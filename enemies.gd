@@ -52,10 +52,10 @@ func _process(delta):
 	
 	var screen_size = get_window().size
 	var half_offset = screen_size.x / 4
-	var character_width = get_node("ShapeBox").shape.radius * 2
+	var character_width = hit_box.shape.radius * 2
 	
-	if camera_2d.position.x - half_offset - character_width > self.position.x:
-		queue_free()
+	#if camera_2d.position.x - half_offset - character_width > self.position.x:
+		#queue_free()
 	
 	if moving and not is_killed:
 		walking(delta)
@@ -90,13 +90,14 @@ func _on_area_2d_body_entered(body):
 	if ( (body.name == "Bullet" and shielded == false) or ( body.name == "CharacterBody2D" and character_body_2d.animation_tree["parameters/playback"].get_current_node() == "attack")):
 		animated_sprite_2d.play("death")
 		is_killed = true
-		main.deduct.append("1")
+		main.kill_count += 1
 		shape_box.set_deferred("disabled",true)
 		hit_box.set_deferred("disabled",true)
 		
 	elif (body.name == "CharacterBody2D"):
 		if not is_killed:
-			get_tree().reload_current_scene()
+			main.game_over()
 		
 	
-	
+func despawn():
+	queue_free()

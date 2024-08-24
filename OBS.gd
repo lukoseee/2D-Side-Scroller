@@ -1,5 +1,8 @@
 extends Area2D
 
+@onready var main = $"."
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,4 +16,4 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if (body.name == "CharacterBody2D"):
-		get_tree().reload_current_scene()
+		main.game_over()

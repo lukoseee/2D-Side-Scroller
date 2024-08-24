@@ -1,10 +1,8 @@
 extends CharacterBody2D
-@onready var camera_2d = $Camera2D
+
 @onready var life_2 = $"Life 2"
 
-
-
-var SPEED = 500
+var SPEED = 700
 var enemy1 = preload("res://enemies/enemy1.tscn")
 var enemies = [enemy1]
 # Called when the node enters the scene tree for the first time.

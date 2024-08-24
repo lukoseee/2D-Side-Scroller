@@ -1277,7 +1277,6 @@ font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_mvkj0"]
 font = ExtResource("19_26qjo")
-font_size = 20
 
 [sub_resource type="Animation" id="Animation_usao0"]
 resource_name = "fadein"
@@ -1505,13 +1504,14 @@ metadata/_edit_lock_ = true
 
 [node name="HighScore" type="Label" parent="CanvasLayer"]
 texture_filter = 1
-offset_left = 960.0
-offset_top = 15.0
-offset_right = 1117.0
-offset_bottom = 43.0
-text = "High Score:
+offset_left = 979.0
+offset_top = 14.0
+offset_right = 1100.0
+offset_bottom = 37.0
+text = "HighScore:
 "
 label_settings = SubResource("LabelSettings_mvkj0")
+metadata/_edit_lock_ = true
 
 [node name="Node2D" type="Node2D" parent="CanvasLayer"]
 

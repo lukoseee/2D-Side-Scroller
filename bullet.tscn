@@ -33,7 +33,7 @@ rotation = -1.57673
 shape = SubResource("CapsuleShape2D_ilg6e")
 
 [node name="Life" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.7
 autostart = true
 
 [node name="Life 2" type="Timer" parent="."]

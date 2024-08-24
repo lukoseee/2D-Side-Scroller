@@ -28,7 +28,7 @@ var obstacles = [stone1,stone2,stone3,tree1,tree2,tree3,tree4,tree5,tree6]
 var obs_array = []
 var enemies_array = []
 var tile_edge_limit = 8 
-
+var og_game
 
 #var slide_pattern_size = slide_pattern.get_size()
 
@@ -66,18 +66,19 @@ func slide_obs():
 		var x2 = ((last_tile.x + final_offset) * tile_size) 
 		var y2 = last_tile.y * tile_size
 		enemy = main.spawn_enemy(x2,y2,enemy1)
+		enemies_array.append(enemy)
 		spawned = true
 	
 	if not spawned or not enemy.moving:
 		set_pattern(0,Vector2i(x,y),obs_type)
 	
-	obs_array.append(obs_type)
+	
 
 func generate_obs():
 	var obs_type = obstacles.pick_random()
 	
 	var obs = obs_type.instantiate()
-	add_child(obs)
+	
 	
 	var obs_width = obs.get_node("Sprite2D").texture.get_width()
 	var enemy1in = enemy1.instantiate()
@@ -109,13 +110,17 @@ func generate_obs():
 		var x2 = ((last_tile.x + final_offset) * tile_size) 
 		var y2 = last_tile.y * tile_size
 		enemy = main.spawn_enemy(x2,y2,enemy1)
+		enemies_array.append(enemy)
+		#print(enemies_array)
 		spawned = true
 	
 	if not spawned or not enemy.moving:
+		#print(obs_array)
+		add_child(obs)
 		obs.position = Vector2i(x,y)
-	
+		obs_array.append(obs)
 		
-	obs_array.append(obs_type)
+	
 
 # Called when the node enters the scene tree for the first time.
 func place_obs(x,y ,obs_type):
@@ -158,7 +163,14 @@ func place_enemy(offset,obs_width,pattern_size):
 	main.spawn_enemy(x2,y2,enemy1)
 
 func _ready():
+	
+	og_game = true
+	print("ready")
 	generate_tiles()
+	
+	
+	#print(obs_array)
+	#print(enemies_array)
 	#generate_obs()
 	#slide_obs()
 	##test coords
@@ -173,9 +185,34 @@ func _ready():
 	
 	#node.spawn_enemy(336,208,enemy1)
 	#main.spawn_enemy(test_x,test_y,enemy1)
+	
+	
+func reset():
+	og_game = false
+	last_tile = Vector2i(0,26)
+	starting_pos = Vector2i(4,26)
+	
+	print(obs_array)
+	print(enemies_array)
+	
+	if not enemies_array.is_empty():
+		print(enemies_array)
+		for enemy in enemies_array:
+			enemy.queue_free()
+			
+	if not obs_array.is_empty():
+		for obs in obs_array:
+			obs.queue_free()
+		
+	enemies_array.clear()
+	obs_array.clear()
+	
+	generate_tiles()
+	
 func generate_tiles():
 	#find upper and lower limit to where tiles can spawn
 	var screen_size = camera_2d.position
+	print(screen_size)
 	var screen_limit_min = screen_size.y - (0.5 * screen_size.y)
 	var screen_limit_max = screen_size.y + (0.5 * screen_size.y)
 	
@@ -199,24 +236,25 @@ func generate_tiles():
 		return
 	
 	#initial placement
-	if last_tile.x == 0:
+	if last_tile.x == 0 :
 		set_pattern(0, starting_pos, pattern_type)
 		#flag sprite
-		var checkpoint_sprite = Sprite2D.new()
+		if og_game:
+			var checkpoint_sprite = Sprite2D.new()
+			
+			#child of tilemap
+			add_child(checkpoint_sprite)
 		
-		#child of tilemap
-		add_child(checkpoint_sprite)
-		
-		var texture_path = "res://Checkpoints/Checkpoint/Checkpoint (No Flag).png"
-		var texture = load(texture_path)
-		if texture == null:
-			print("Failed to load texture at path:", texture_path)
-			return
+			var texture_path = "res://Checkpoints/Checkpoint/Checkpoint (No Flag).png"
+			var texture = load(texture_path)
+			if texture == null:
+				print("Failed to load texture at path:", texture_path)
+				return
 
-		checkpoint_sprite.texture = texture
-		
-		#coords doubled as its child of tilemap so its normal coords * 2
-		checkpoint_sprite.position = Vector2i(1032,385)# Test coordinates
+			checkpoint_sprite.texture = texture
+			
+			#coords doubled as its child of tilemap so its normal coords * 2
+			checkpoint_sprite.position = Vector2i(1032,385)# Test coordinates
 	#rest of patterns
 	else: 
 		var placement_tile = Vector2i(last_tile.x , last_tile.y)
@@ -243,7 +281,9 @@ func generate_tiles():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	var screen_size = get_window().size
+	
 	var camera = camera_2d.position.x + screen_size.x
 	#print(str(camera) + " " + str(last_tile.x * tile_size) + " " + str(last_tile.y * tile_size))
 	
@@ -256,4 +296,4 @@ func _process(delta):
 		else:
 			slide_obs()
 		
-		
+
