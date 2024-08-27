@@ -90,7 +90,7 @@ func _on_area_2d_body_entered(body):
 	if ( (body.name == "Bullet" and shielded == false) or ( body.name == "CharacterBody2D" and character_body_2d.animation_tree["parameters/playback"].get_current_node() == "attack")):
 		animated_sprite_2d.play("death")
 		is_killed = true
-		main.kill_count += 1
+		ScoreSingleton.add_score()
 		shape_box.set_deferred("disabled",true)
 		hit_box.set_deferred("disabled",true)
 		

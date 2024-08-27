@@ -1,6 +1,4 @@
-extends Area2D
-
-@onready var main = $".."
+extends AnimationPlayer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,7 +11,7 @@ func _process(delta):
 	pass
 
 
-func _on_body_entered(body):
-	#if (body.name == "CharacterBody2D"):
-		#main.game_over()
-	pass
+func _on_animation_finished(anim_name):
+	if anim_name == "fade_out":
+		print("finished playing")
+	

@@ -1,19 +1,21 @@
-extends Area2D
+extends Node
 
-@onready var main = $".."
-
-
+var score
+var high_score = 0 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	score = 0 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
+func add_score():
+	score += 1
 
-func _on_body_entered(body):
-	#if (body.name == "CharacterBody2D"):
-		#main.game_over()
-	pass
+func reset():
+	score = 0
+
+func update():
+	high_score = score

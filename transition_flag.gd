@@ -1,8 +1,7 @@
 extends Area2D
 
-@onready var main = $".."
 
-
+@onready var canvas_layer = get_parent().get_node("CanvasLayer")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -14,6 +13,6 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	#if (body.name == "CharacterBody2D"):
-		#main.game_over()
-	pass
+	if (body.name == "CharacterBody2D"):
+		canvas_layer.get_node("Transition").get_node("AnimationPlayer").play("fade_out")
+		

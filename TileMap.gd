@@ -19,6 +19,7 @@ var tree4 = preload("res://obstacle scenes/tree4.tscn")
 var tree5 = preload("res://obstacle scenes/tree5.tscn")
 var tree6 = preload("res://obstacle scenes/tree6.tscn")
 var enemy1 = preload("res://enemies/enemy1.tscn")
+var flag = preload("res://transition_flag.tscn")
 var slide_pattern1 = tile_set.get_pattern(4)
 var slide_pattern2 = tile_set.get_pattern(5)
 var slide_pattern3 = tile_set.get_pattern(6)
@@ -29,7 +30,7 @@ var obs_array = []
 var enemies_array = []
 var tile_edge_limit = 8 
 var og_game
-
+var transitioned
 #var slide_pattern_size = slide_pattern.get_size()
 
 func slide_obs():
@@ -167,7 +168,7 @@ func _ready():
 	og_game = true
 	print("ready")
 	generate_tiles()
-	
+	transitioned = false
 	
 	#print(obs_array)
 	#print(enemies_array)
@@ -191,12 +192,9 @@ func reset():
 	og_game = false
 	last_tile = Vector2i(0,26)
 	starting_pos = Vector2i(4,26)
-	
-	print(obs_array)
-	print(enemies_array)
+
 	
 	if not enemies_array.is_empty():
-		print(enemies_array)
 		for enemy in enemies_array:
 			enemy.queue_free()
 			
@@ -212,13 +210,12 @@ func reset():
 func generate_tiles():
 	#find upper and lower limit to where tiles can spawn
 	var screen_size = camera_2d.position
-	print(screen_size)
 	var screen_limit_min = screen_size.y - (0.5 * screen_size.y)
 	var screen_limit_max = screen_size.y + (0.5 * screen_size.y)
 	
 	#calculate max gap between tiles
 	var t_air = -2 * character_body_2d.JUMP_VELOCITY / character_body_2d.gravity
-	var max_gap = ((main.camSpeed * 100) - (main.camSpeed * 100 * 0.2)) * t_air
+	var max_gap = ((GameSpeed.camSpeed * 100) - (GameSpeed.camSpeed * 100 * 0.2)) * t_air
 	#covert to tile format
 	var max_tile_gap = max_gap / tile_size
 	#randomise tile pattern
@@ -283,7 +280,7 @@ func generate_tiles():
 func _process(delta):
 	
 	var screen_size = get_window().size
-	
+	var pattern_size = pattern_type.get_size()
 	var camera = camera_2d.position.x + screen_size.x
 	#print(str(camera) + " " + str(last_tile.x * tile_size) + " " + str(last_tile.y * tile_size))
 	
@@ -295,5 +292,20 @@ func _process(delta):
 			generate_obs()
 		else:
 			slide_obs()
+	#using singletons to store score and high score across scenes 
+	if ScoreSingleton.score % 7 == 0 and ScoreSingleton.score != 0 and not transitioned :
+		print("spawned")
+		var ins = flag.instantiate()
+		get_parent().add_child(ins)
+		#ins.position = Vector2i( (last_tile.x + pattern_size.x - 2) * tile_size,last_tile.y * tile_size)
+		obs_array.append(ins)
+		transitioned = true
 		
+	if ScoreSingleton.score % 7 != 0:
+		transitioned = false
 
+
+func _on_animation_player_animation_finished(anim_name):
+	#transition after fade in anim
+	if anim_name == "fade_out":
+		get_tree().change_scene_to_file("res://level2.tscn")
