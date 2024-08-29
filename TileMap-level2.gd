@@ -9,24 +9,30 @@ var starting_pos = Vector2i(4,26)
 @onready var main = $".."
 var gap_difficulty = 0.73
 var pattern_type
-var stone1 = preload("res://obstacle scenes/stone1.tscn")
-var stone2 = preload("res://obstacle scenes/stone2.tscn")
-var stone3 = preload("res://obstacle scenes/stone3.tscn")
-var tree1 = preload("res://obstacle scenes/tree1.tscn")
-var tree2 = preload("res://obstacle scenes/tree2.tscn")
-var tree3 = preload("res://obstacle scenes/tree3.tscn")
-var tree4 = preload("res://obstacle scenes/tree4.tscn")
-var tree5 = preload("res://obstacle scenes/tree5.tscn")
-var tree6 = preload("res://obstacle scenes/tree6.tscn")
+
 var enemy1 = preload("res://enemies/enemy1.tscn")
+var enemy2 = preload("res://enemies/enemy2.tscn")
+var enemy3 = preload("res://enemies/enemy3.tscn")
+var enemy4 = preload("res://enemies/enemy4.tscn")
+var enemy5 = preload("res://enemies/enemy5.tscn")
 var flag = preload("res://transition_flag.tscn")
-var platform1 = tile_set.get_pattern(3)
-var slide_pattern1 = tile_set.get_pattern(4)
-var slide_pattern2 = tile_set.get_pattern(5)
-var slide_pattern3 = tile_set.get_pattern(6)
-var slide_pattern4 = tile_set.get_pattern(7)
-var slide_obstables = [slide_pattern1,slide_pattern2,slide_pattern3,slide_pattern4]
-var obstacles = [stone1,stone2,stone3,tree1,tree2,tree3,tree4,tree5,tree6]
+var building1 = preload("res://obstacle scenes/building1tscn.tscn")
+var building2 = preload("res://obstacle scenes/building2.tscn")
+var building3 = preload("res://obstacle scenes/building3.tscn")
+var building4 = preload("res://obstacle scenes/building4.tscn")
+var building5 = preload("res://obstacle scenes/building5.tscn")
+var rocket = preload("res://obstacle scenes/rocket.tscn")
+var platform1 = tile_set.get_pattern(11)
+var slide_pattern1 = tile_set.get_pattern(12)
+var slide_pattern2 = tile_set.get_pattern(13)
+var slide_pattern3 = tile_set.get_pattern(14)
+var slide_pattern4 = tile_set.get_pattern(15)
+var slide_pattern5 = tile_set.get_pattern(16)
+var slide_pattern6 = tile_set.get_pattern(17)
+var slide_pattern7 = tile_set.get_pattern(18)
+var slide_pattern8 = tile_set.get_pattern(19)
+var slide_obstables = [slide_pattern1,slide_pattern2,slide_pattern3,slide_pattern4,slide_pattern5,slide_pattern6,slide_pattern7,slide_pattern8]
+var obstacles = [building1,building2,building3,building4,building5,rocket]
 var obs_array = []
 var enemies_array = []
 var tile_edge_limit = 8 
@@ -67,7 +73,7 @@ func slide_obs():
 		final_offset = randi_range(enemy_boundary1, enemy_boundary2)
 		var x2 = ((last_tile.x + final_offset) * tile_size) 
 		var y2 = last_tile.y * tile_size
-		enemy = main.spawn_enemy(x2,y2,enemy1)
+		enemy = main.spawn_enemy(x2,y2,enemy5)
 		enemies_array.append(enemy)
 		spawned = true
 	
@@ -111,7 +117,7 @@ func generate_obs():
 		final_offset = randi_range(enemy_boundary1, enemy_boundary2)
 		var x2 = ((last_tile.x + final_offset) * tile_size) 
 		var y2 = last_tile.y * tile_size
-		enemy = main.spawn_enemy(x2,y2,enemy1)
+		enemy = main.spawn_enemy(x2,y2,enemy5)
 		enemies_array.append(enemy)
 		#print(enemies_array)
 		spawned = true
@@ -263,7 +269,7 @@ func _process(delta):
 		print("spawned")
 		var ins = flag.instantiate()
 		get_parent().add_child(ins)
-		ins.position = Vector2i( (last_tile.x + pattern_size.x - 2) * tile_size,last_tile.y * tile_size)
+		#ins.position = Vector2i( (last_tile.x + pattern_size.x - 2) * tile_size,last_tile.y * tile_size)
 		obs_array.append(ins)
 		transitioned = true
 		

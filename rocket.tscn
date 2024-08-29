@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhktgoxmo5341"]
+
+[ext_resource type="PackedScene" uid="uid://dyrbtds1pg0i8" path="res://obstacle scenes/building5.tscn" id="1_exe02"]
+[ext_resource type="Texture2D" uid="uid://pa6v44d58tj5" path="res://obstacle pics/rocket.png" id="2_twhs0"]
+
+[node name="Area2D" instance=ExtResource("1_exe02")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(7.91291, -9.08879)
+scale = Vector2(0.947938, 0.760072)
+texture = ExtResource("2_twhs0")
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+position = Vector2(58, -48.5)
+scale = Vector2(2.0625, 1.15476)
+polygon = PackedVector2Array(-21, 42, -21, 36, -21.0909, 29.4433, -21.3333, 12.9897, -26.1818, 13.4227, -26.5, 42)

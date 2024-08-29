@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://tadu7hgbtaio"]
+
+[ext_resource type="Script" path="res://OBS.gd" id="1_mpqx0"]
+[ext_resource type="Texture2D" uid="uid://6arwca1ptdvx" path="res://obstacle pics/stone 1.png" id="2_rvqxw"]
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_mpqx0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(27, -15.5)
+texture = ExtResource("2_rvqxw")
+offset = Vector2(-0.5, 0.5)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(26, -14)
+polygon = PackedVector2Array(-26, 14, 28, 14, -7, -14, -19, -12, -25, -5, -28, 7)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

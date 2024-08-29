@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm7qntesqfbht"]
+
+[ext_resource type="PackedScene" uid="uid://dxwk37f2cmmnt" path="res://obstacle scenes/tree3.tscn" id="1_lu2tw"]
+[ext_resource type="Texture2D" uid="uid://crp0akn87gbqw" path="res://obstacle pics/tree5.png" id="2_yysgg"]
+
+[node name="Area2D" instance=ExtResource("1_lu2tw")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(36.5, -0.5)
+texture = ExtResource("2_yysgg")
+offset = Vector2(0.126884, -14.3596)
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+position = Vector2(7, -8)
+polygon = PackedVector2Array(26, 8, 63.0965, 7.95334, 57.7943, -14.316, 20.6787, -11.6649, -0.530219, 1.06044, 1.06045, 7.95334)

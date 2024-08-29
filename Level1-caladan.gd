@@ -45,7 +45,7 @@ func start_game():
 	start_speed = 2.5
 	
 	ins_enemies.clear()
-	
+	GameSpeed.reset()
 	
 
 func spawn_bullet(x,y):

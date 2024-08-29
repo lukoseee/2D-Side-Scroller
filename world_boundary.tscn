@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://chfxc34f2eojq"]
+
+[ext_resource type="Script" path="res://bound_area.gd" id="1_gwe44"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w7oql"]
+normal = Vector2(0.0133321, -0.999911)
+distance = -76.2025
+
+[node name="World Boundary" type="Area2D"]
+script = ExtResource("1_gwe44")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(547, 359)
+shape = SubResource("WorldBoundaryShape2D_w7oql")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

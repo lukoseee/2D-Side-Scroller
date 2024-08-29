@@ -1,0 +1,194 @@
+[gd_scene load_steps=27 format=3 uid="uid://q2mfsjpnr47p"]
+
+[ext_resource type="Script" path="res://sub-scenes/main_character.gd" id="1_j5qfg"]
+[ext_resource type="Texture2D" uid="uid://dbikkeck0dvob" path="res://main_player/all.png" id="2_iimc8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_drqwf"]
+radius = 8.0
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w2qro"]
+radius = 8.0
+height = 24.0
+
+[sub_resource type="Animation" id="Animation_kyuub"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_3gweo"]
+resource_name = "attack"
+length = 0.52
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_1nhii"]
+resource_name = "gun"
+length = 0.22
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_i63g4"]
+resource_name = "jump"
+length = 0.52
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_kfiqg"]
+resource_name = "run"
+length = 0.62
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23, 24, 25, 26]
+}
+
+[sub_resource type="Animation" id="Animation_sv3yi"]
+resource_name = "slide"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b2je0"]
+_data = {
+"RESET": SubResource("Animation_kyuub"),
+"attack": SubResource("Animation_3gweo"),
+"gun": SubResource("Animation_1nhii"),
+"jump": SubResource("Animation_i63g4"),
+"run": SubResource("Animation_kfiqg"),
+"slide": SubResource("Animation_sv3yi")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t10s8"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g5tx7"]
+animation = &"gun"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l56wv"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k4iyo"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pkueh"]
+animation = &"slide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gniac"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_471vf"]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kcbu8"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wl6la"]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_taibf"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_faifq"]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_li0vf"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ix1r"]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dkne7"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lipj0"]
+states/Start/position = Vector2(71, 109)
+states/attack/node = SubResource("AnimationNodeAnimation_t10s8")
+states/attack/position = Vector2(412, 25)
+states/gun/node = SubResource("AnimationNodeAnimation_g5tx7")
+states/gun/position = Vector2(572, 176)
+states/jump/node = SubResource("AnimationNodeAnimation_l56wv")
+states/jump/position = Vector2(585, 57)
+states/run/node = SubResource("AnimationNodeAnimation_k4iyo")
+states/run/position = Vector2(412, 121)
+states/slide/node = SubResource("AnimationNodeAnimation_pkueh")
+states/slide/position = Vector2(412, 215)
+transitions = ["Start", "run", SubResource("AnimationNodeStateMachineTransition_gniac"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_471vf"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_kcbu8"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_wl6la"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_taibf"), "run", "gun", SubResource("AnimationNodeStateMachineTransition_faifq"), "gun", "run", SubResource("AnimationNodeStateMachineTransition_li0vf"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_2ix1r"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_dkne7")]
+graph_offset = Vector2(-185, -16)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_j5qfg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-8, -43)
+scale = Vector2(0.925, 1.37542)
+texture = ExtResource("2_iimc8")
+centered = false
+hframes = 6
+vframes = 5
+frame = 26
+
+[node name="Running" type="CollisionShape2D" parent="."]
+position = Vector2(6, -23)
+shape = SubResource("CapsuleShape2D_drqwf")
+
+[node name="Sliding" type="CollisionShape2D" parent="."]
+position = Vector2(6, -12)
+shape = SubResource("CapsuleShape2D_w2qro")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b2je0")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_lipj0")
+anim_player = NodePath("../AnimationPlayer")
