@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://drudmmimtamol"]
+
+[ext_resource type="Script" path="res://OBS.gd" id="1_fursk"]
+[ext_resource type="Texture2D" uid="uid://c5famv3wp351q" path="res://Foozle_2DT0001_Science_Fiction_Lab_TilesetDecorTraps/Foozle_2DT0001_Science_Fiction_Labs_Tileset/Traps/laser_idle.png" id="2_t1y1g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em5mg"]
+atlas = ExtResource("2_t1y1g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjq3g"]
+atlas = ExtResource("2_t1y1g")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvi8l"]
+atlas = ExtResource("2_t1y1g")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkfj8"]
+atlas = ExtResource("2_t1y1g")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxspk"]
+atlas = ExtResource("2_t1y1g")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xnf7"]
+atlas = ExtResource("2_t1y1g")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uu10"]
+atlas = ExtResource("2_t1y1g")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0byf1"]
+atlas = ExtResource("2_t1y1g")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l48jw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em5mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjq3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvi8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkfj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxspk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xnf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uu10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0byf1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ecds"]
+size = Vector2(10.5, 48.5)
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_fursk")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(10, -28)
+scale = Vector2(1.28125, 1.71875)
+sprite_frames = SubResource("SpriteFrames_l48jw")
+autoplay = "default"
+frame_progress = 0.409027
+offset = Vector2(-0.5, 0.5)
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+position = Vector2(9, -25)
+shape = SubResource("RectangleShape2D_3ecds")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

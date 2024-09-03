@@ -181,10 +181,9 @@ material = SubResource("ShaderMaterial_f2gg1")
 position = Vector2(1.71665, -15.6641)
 scale = Vector2(1.60695, 1.5643)
 sprite_frames = SubResource("SpriteFrames_fkunr")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame = 6
-frame_progress = 1.0
+frame_progress = 0.106159
 
 [node name="ShapeBox" type="CollisionShape2D" parent="."]
 position = Vector2(1, -11)

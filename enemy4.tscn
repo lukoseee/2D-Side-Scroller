@@ -1,10 +1,16 @@
-[gd_scene load_steps=35 format=3 uid="uid://2b2xmrbwh1e5"]
+[gd_scene load_steps=39 format=3 uid="uid://2b2xmrbwh1e5"]
 
-[ext_resource type="PackedScene" uid="uid://yo67i0xxn7ju" path="res://enemies/enemy1.tscn" id="1_yvun1"]
+[ext_resource type="Script" path="res://enemies.gd" id="1_l1vll"]
 [ext_resource type="Texture2D" uid="uid://jxmn2fjr5mnj" path="res://enemies_sprites/stormhead/damaged.png" id="2_51xeo"]
+[ext_resource type="Shader" path="res://shield_shader.gdshader" id="2_54jcf"]
 [ext_resource type="Texture2D" uid="uid://cbh2m0tdp52y6" path="res://enemies_sprites/stormhead/idle.png" id="2_ayx4t"]
 [ext_resource type="Texture2D" uid="uid://cqwikc7a2e13s" path="res://enemies_sprites/stormhead/death.png" id="3_wgh5i"]
 [ext_resource type="Texture2D" uid="uid://d08qruaxip2hi" path="res://enemies_sprites/stormhead/run.png" id="5_lntex"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f2gg1"]
+shader = ExtResource("2_54jcf")
+shader_parameter/line_color = Color(0.35141, 0.0520978, 0.317609, 0.952941)
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ymkab"]
 atlas = ExtResource("2_51xeo")
@@ -220,23 +226,54 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="enemy1" instance=ExtResource("1_yvun1")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpr5l"]
+radius = 12.0
+height = 46.0
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5v2vb"]
+radius = 15.0
+height = 60.0
+
+[node name="enemy1" type="CharacterBody2D"]
+script = ExtResource("1_l1vll")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_f2gg1")
 position = Vector2(16, -81)
+scale = Vector2(1.41111, 1.35937)
 sprite_frames = SubResource("SpriteFrames_2edl3")
 animation = &"run"
-autoplay = ""
 frame_progress = 0.990982
 
-[node name="ShapeBox" parent="." index="1"]
+[node name="ShapeBox" type="CollisionShape2D" parent="."]
 position = Vector2(7, -22)
+shape = SubResource("CapsuleShape2D_xpr5l")
 
-[node name="HitBox" parent="Area2D" index="0"]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="HitBox" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(7, -26)
+shape = SubResource("CapsuleShape2D_5v2vb")
 
-[node name="Cast_Right" parent="." index="4"]
+[node name="Cast_Down_Left" type="RayCast2D" parent="."]
+position = Vector2(-35, 0)
+target_position = Vector2(0, 9)
+collide_with_areas = true
+
+[node name="Cast_Right" type="RayCast2D" parent="."]
 position = Vector2(17, -2)
+target_position = Vector2(8, 0)
+collide_with_areas = true
 
-[node name="Cast_Down_Right" parent="." index="5"]
+[node name="Cast_Down_Right" type="RayCast2D" parent="."]
 position = Vector2(14, 1)
+target_position = Vector2(0, 8)
+collide_with_areas = true
+
+[node name="Cast_Left" type="RayCast2D" parent="."]
+position = Vector2(-4, -2)
+target_position = Vector2(-50, 0)
+collide_with_areas = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

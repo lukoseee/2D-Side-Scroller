@@ -268,13 +268,13 @@ animation = &"death"
 autoplay = "idle"
 
 [node name="ShapeBox" type="CollisionShape2D" parent="."]
-position = Vector2(16, -23)
+position = Vector2(16, -21)
 shape = SubResource("CapsuleShape2D_xpr5l")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="HitBox" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(16, -24)
+position = Vector2(15, -23)
 shape = SubResource("CapsuleShape2D_5v2vb")
 
 [node name="Cast_Down_Left" type="RayCast2D" parent="."]
@@ -293,7 +293,7 @@ target_position = Vector2(0, 8)
 collide_with_areas = true
 
 [node name="Cast_Left" type="RayCast2D" parent="."]
-position = Vector2(11, -3)
+position = Vector2(-7, -1)
 target_position = Vector2(-50, 0)
 collide_with_areas = true
 

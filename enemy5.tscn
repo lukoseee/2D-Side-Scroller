@@ -255,11 +255,11 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpr5l"]
 radius = 12.0
-height = 46.0
+height = 38.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5v2vb"]
-radius = 9.0
-height = 60.0
+radius = 5.0
+height = 34.0
 
 [node name="enemy1" type="CharacterBody2D"]
 script = ExtResource("1_4xhui")
@@ -270,10 +270,9 @@ material = SubResource("ShaderMaterial_f2gg1")
 position = Vector2(11, -20)
 scale = Vector2(0.976388, 1.04427)
 sprite_frames = SubResource("SpriteFrames_8rr7q")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame = 15
-frame_progress = 1.0
+frame_progress = 0.633855
 
 [node name="ShapeBox" type="CollisionShape2D" parent="."]
 position = Vector2(8, -16)

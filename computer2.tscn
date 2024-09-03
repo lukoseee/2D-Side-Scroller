@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://1ibkfdsetkyu"]
+
+[ext_resource type="Script" path="res://OBS.gd" id="1_5gd5r"]
+[ext_resource type="Texture2D" uid="uid://bx8y8l5cfa7j6" path="res://Foozle_2DT0001_Science_Fiction_Lab_TilesetDecorTraps/Foozle_2DT0001_Science_Fiction_Labs_Tileset/Decor/Individual_PNGs/decor_3.png" id="1_pniku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nam2c"]
+size = Vector2(68.375, 38)
+
+[node name="Stone1" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_5gd5r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(34.5921, -30.5833)
+scale = Vector2(2.77549, 1.96354)
+texture = ExtResource("1_pniku")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+position = Vector2(38.5, -18)
+shape = SubResource("RectangleShape2D_nam2c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

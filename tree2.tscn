@@ -8,6 +8,7 @@ position = Vector2(0, 0)
 scale = Vector2(2, 2)
 
 [node name="Sprite2D" parent="." index="0"]
+texture_filter = 1
 position = Vector2(36, -0.5)
 scale = Vector2(0.655963, 0.670732)
 texture = ExtResource("2_typiv")

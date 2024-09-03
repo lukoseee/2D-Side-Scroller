@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwoddj1n8dgja"]
+
+[ext_resource type="PackedScene" uid="uid://b2k4fnpnrbg8p" path="res://obstacle scenes/building1tscn.tscn" id="1_nxykg"]
+[ext_resource type="Texture2D" uid="uid://8mykeaty6og7" path="res://obstacle pics/dune1.png" id="2_fnvrd"]
+
+[node name="Area2D" instance=ExtResource("1_nxykg")]
+position = Vector2(-1, 0)
+
+[node name="Sprite2D" parent="." index="0"]
+texture_filter = 1
+position = Vector2(29, 8.5)
+scale = Vector2(1.25598, 1.84816)
+texture = ExtResource("2_fnvrd")
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(27, 41.5, 15, 17.5, 5, 23.5, -15.5, 19.5, -24.5, 18, -29.5, 41.5)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://k2ctvl6v3enm"]
+
+[ext_resource type="PackedScene" uid="uid://b2k4fnpnrbg8p" path="res://obstacle scenes/building1tscn.tscn" id="1_8f71w"]
+[ext_resource type="Texture2D" uid="uid://g062gkxrg45" path="res://obstacle pics/desert rock 4.png" id="2_gw4lj"]
+
+[node name="Area2D" instance=ExtResource("1_8f71w")]
+position = Vector2(1, 0)
+
+[node name="Sprite2D" parent="." index="0"]
+texture_filter = 1
+position = Vector2(12.5, 3.5)
+scale = Vector2(1.08651, 1.31425)
+texture = ExtResource("2_gw4lj")
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+position = Vector2(27, -40)
+polygon = PackedVector2Array(1, 39.5, -1, 28, -7.5, 21, -16.5, 17, -25.5, 25.5, -25, 39.5)
