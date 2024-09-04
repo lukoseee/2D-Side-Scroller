@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var shielded 
+var shielded = false
 var is_killed = false
 
 @onready var character_body_2d = $"../CharacterBody2D"
@@ -34,13 +34,6 @@ func _ready():
 	
 	var randomiser = randi_range(1,2)
 	var randomiser2 = randi_range(1,2)
-	#randomising shield and if moving
-	if randomiser == 1:
-		shielded = false
-		animated_sprite_2d.material.set_shader_parameter("line_thickness" , 0)
-	else:
-		shielded = true
-		animated_sprite_2d.material.set_shader_parameter("line_thickness" , 1)
 		
 	if randomiser2 == 1:
 		moving = true
@@ -101,3 +94,4 @@ func _on_area_2d_body_entered(body):
 	
 func despawn():
 	queue_free()
+

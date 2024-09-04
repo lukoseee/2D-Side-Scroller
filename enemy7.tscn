@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://chsupayughv1b"]
 
-[ext_resource type="Script" path="res://enemies.gd" id="1_harwq"]
+[ext_resource type="Script" path="res://greenguy.gd" id="1_031ud"]
 [ext_resource type="Shader" path="res://shield_shader.gdshader" id="2_tigya"]
 [ext_resource type="Texture2D" uid="uid://dggbi43vb8vmk" path="res://enemies_sprites/tooth walker/tooth walker sprite-Sheet.png" id="3_81xk8"]
 
@@ -169,7 +169,7 @@ radius = 11.0
 height = 60.0
 
 [node name="enemy1" type="CharacterBody2D"]
-script = ExtResource("1_harwq")
+script = ExtResource("1_031ud")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -188,7 +188,7 @@ shape = SubResource("CapsuleShape2D_xpr5l")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="HitBox" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(9, -28)
+position = Vector2(-2, -28)
 shape = SubResource("CapsuleShape2D_5v2vb")
 
 [node name="Cast_Down_Left" type="RayCast2D" parent="."]

@@ -1,18 +1,19 @@
-[gd_scene load_steps=42 format=3 uid="uid://fdxxtdf4cnbu"]
+[gd_scene load_steps=43 format=3 uid="uid://fdxxtdf4cnbu"]
 
-[ext_resource type="Script" path="res://enemies.gd" id="1_4xhui"]
+[ext_resource type="Script" path="res://striker.gd" id="1_kgr02"]
 [ext_resource type="Texture2D" uid="uid://cbxwe006o0mhl" path="res://enemies_sprites/Striker/spr_StrikerDeath_strip.png" id="2_1ue65"]
 [ext_resource type="Shader" path="res://shield_shader.gdshader" id="2_7bhtw"]
 [ext_resource type="Texture2D" uid="uid://bpbqwjmvfoc4v" path="res://enemies_sprites/Striker/spr_StrikerIdle_strip.png" id="2_8f00o"]
+[ext_resource type="Texture2D" uid="uid://dviifo1j7pl0n" path="res://enemies_sprites/death-striker.png" id="3_f3i6d"]
 [ext_resource type="Texture2D" uid="uid://p4g1lx2vjm2n" path="res://enemies_sprites/Striker/spr_StrikerRun_strip.png" id="4_fndj4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f2gg1"]
 shader = ExtResource("2_7bhtw")
-shader_parameter/line_color = Color(0.35141, 0.0520978, 0.317609, 0.952941)
+shader_parameter/line_color = Color(1, 1, 1, 0.952941)
 shader_parameter/line_thickness = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vhk8a"]
-atlas = ExtResource("2_1ue65")
+[sub_resource type="AtlasTexture" id="AtlasTexture_do2ex"]
+atlas = ExtResource("3_f3i6d")
 region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4u476"]
@@ -143,7 +144,7 @@ region = Rect2(672, 0, 96, 96)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vhk8a")
+"texture": SubResource("AtlasTexture_do2ex")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4u476")
@@ -250,38 +251,40 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 10.0
+"speed": 15.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpr5l"]
-radius = 12.0
-height = 38.0
+radius = 1.72923
+height = 29.2508
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5v2vb"]
-radius = 5.0
-height = 34.0
+radius = 0.329853
+height = 1.39692
 
 [node name="enemy1" type="CharacterBody2D"]
-script = ExtResource("1_4xhui")
+script = ExtResource("1_kgr02")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_f2gg1")
-position = Vector2(11, -20)
-scale = Vector2(0.976388, 1.04427)
+position = Vector2(11, -22)
+scale = Vector2(1.11319, 1.13672)
 sprite_frames = SubResource("SpriteFrames_8rr7q")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
-frame_progress = 0.633855
+frame_progress = 0.849393
 
 [node name="ShapeBox" type="CollisionShape2D" parent="."]
-position = Vector2(8, -16)
+position = Vector2(10, -14)
+scale = Vector2(1.15658, -1.02561)
 shape = SubResource("CapsuleShape2D_xpr5l")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="HitBox" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(8, -17)
+position = Vector2(8, -15)
+scale = Vector2(24.2532, 24.3392)
 shape = SubResource("CapsuleShape2D_5v2vb")
 
 [node name="Cast_Down_Left" type="RayCast2D" parent="."]

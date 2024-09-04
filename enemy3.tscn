@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://defwoisxn1mpy"]
 
-[ext_resource type="Script" path="res://enemies.gd" id="1_vc2hf"]
+[ext_resource type="Script" path="res://greenguy.gd" id="1_16orv"]
 [ext_resource type="Shader" path="res://shield_shader.gdshader" id="2_0g2d4"]
 [ext_resource type="Texture2D" uid="uid://mats51f7sk2w" path="res://enemies_sprites/Small Monster/small modeath and damagedt.png" id="2_uiucf"]
 [ext_resource type="Texture2D" uid="uid://40sfw5afexe5" path="res://enemies_sprites/Small Monster/small moidle.png" id="3_gaxqj"]
@@ -170,14 +170,14 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpr5l"]
-radius = 6.0
+radius = 2.0
 height = 28.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5v2vb"]
-radius = 12.0
+radius = 9.0
 
 [node name="enemy1" type="CharacterBody2D"]
-script = ExtResource("1_vc2hf")
+script = ExtResource("1_16orv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

@@ -11,8 +11,10 @@ var enemy = 1
 var ins_enemies = []
 var game_running
 var player_dead 
+@onready var tile_map = $TileMap
 
 func _ready():
+	print("ready")
 	screen_size = get_window().size
 	
 	game_running = true
@@ -31,12 +33,7 @@ func _ready():
 	#self.add_child(ins)
 	#ins.position = Vector2i(500,205)
 	
-	
-	
-func start_game():
-	#restart score and bool variables
-	get_tree().change_scene_to_file("res://Level1-caladan.tscn")
-	
+
 	
 	
 
@@ -57,6 +54,7 @@ func despawn_enemy(enemy):
 	remove_child(enemy)
 
 func game_over():
+	print("dead")
 	$CanvasLayer.get_node("Node2D").get_node("Game Over").show()
 	$CanvasLayer/Node2D/AnimationPlayer.play("fadein")
 	#stops game running - player speed and cameramovement
@@ -75,7 +73,6 @@ func _process(delta):
 	#print(deduct)
 	if game_running:
 		
-		print(GameSpeed.camSpeed)
 		
 		GameSpeed.calculate_speed()
 		GameSpeed.check_max()
@@ -94,7 +91,6 @@ func _process(delta):
 			
 	
 	if player_dead and Input.is_action_just_pressed("ui_accept"):
-		$TileMap.clear()
-		start_game()
-		$TileMap.reset()
+		get_tree().change_scene_to_file("res://Level1-caladan.tscn")
+		
 		

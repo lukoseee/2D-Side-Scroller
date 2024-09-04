@@ -9,7 +9,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f2gg1"]
 shader = ExtResource("2_54jcf")
-shader_parameter/line_color = Color(0.35141, 0.0520978, 0.317609, 0.952941)
+shader_parameter/line_color = Color(1, 1, 1, 0.952941)
 shader_parameter/line_thickness = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ymkab"]
@@ -154,7 +154,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nrxia")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 10.0
 }, {
@@ -223,11 +223,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 7.0
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpr5l"]
-radius = 12.0
+radius = 4.0
 height = 46.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5v2vb"]
@@ -244,16 +244,16 @@ position = Vector2(16, -81)
 scale = Vector2(1.41111, 1.35937)
 sprite_frames = SubResource("SpriteFrames_2edl3")
 animation = &"run"
-frame_progress = 0.990982
+autoplay = "idle"
 
 [node name="ShapeBox" type="CollisionShape2D" parent="."]
-position = Vector2(7, -22)
+position = Vector2(13, -22)
 shape = SubResource("CapsuleShape2D_xpr5l")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="HitBox" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(7, -26)
+position = Vector2(14, -26)
 shape = SubResource("CapsuleShape2D_5v2vb")
 
 [node name="Cast_Down_Left" type="RayCast2D" parent="."]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://cddq4a760n7nb"]
 
-[ext_resource type="Script" path="res://enemies.gd" id="1_pqy8q"]
+[ext_resource type="Script" path="res://greenguy.gd" id="1_usdwd"]
 [ext_resource type="Shader" path="res://shield_shader.gdshader" id="2_823si"]
 [ext_resource type="Texture2D" uid="uid://b5fgukit5itcf" path="res://enemies_sprites/Trash Monster/Trash Monster-Sprite V2.png" id="3_wvdjc"]
 
@@ -182,6 +182,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpr5l"]
+radius = 4.0
 height = 52.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5v2vb"]
@@ -189,7 +190,7 @@ radius = 28.0
 height = 56.0
 
 [node name="enemy1" type="CharacterBody2D"]
-script = ExtResource("1_pqy8q")
+script = ExtResource("1_usdwd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -197,10 +198,8 @@ material = SubResource("ShaderMaterial_f2gg1")
 position = Vector2(29, -25)
 scale = Vector2(1.64774, 1.54753)
 sprite_frames = SubResource("SpriteFrames_ahrbg")
-animation = &"run"
+animation = &"death"
 autoplay = "idle"
-frame = 5
-frame_progress = 1.0
 
 [node name="ShapeBox" type="CollisionShape2D" parent="."]
 position = Vector2(27, -26)

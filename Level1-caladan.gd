@@ -65,6 +65,7 @@ func despawn_enemy(enemy):
 	remove_child(enemy)
 
 func game_over():
+	print("dead")
 	$CanvasLayer.get_node("Node2D").get_node("Game Over").show()
 	$CanvasLayer/Node2D/AnimationPlayer.play("fadein")
 	
@@ -98,7 +99,7 @@ func _process(delta):
 			game_running = true
 			
 			$CanvasLayer.get_node("Intro").hide()
-			
+			$CanvasLayer/Node2D/AnimationPlayer.play("location_in")
 	
 	if player_dead and Input.is_action_just_pressed("ui_accept"):
 		$TileMap.clear()

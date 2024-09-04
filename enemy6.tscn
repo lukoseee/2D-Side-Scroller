@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f2gg1"]
 shader = ExtResource("2_312oa")
-shader_parameter/line_color = Color(0.35141, 0.0520978, 0.317609, 0.952941)
+shader_parameter/line_color = Color(1, 1, 1, 0.952941)
 shader_parameter/line_thickness = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pk2jt"]
@@ -259,10 +259,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpr5l"]
+radius = 4.0
 height = 52.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5v2vb"]
-radius = 28.0
+radius = 8.0
 height = 56.0
 
 [node name="enemy1" type="CharacterBody2D"]

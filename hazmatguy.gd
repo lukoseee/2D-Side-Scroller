@@ -19,7 +19,7 @@ var is_killed = false
 @onready var cast_left = $Cast_Left
 
 
-var speed = 50 
+var speed = 70 
 var start_pos : Vector2
 var target_pos : Vector2
 # Called when the node enters the scene tree for the first time.

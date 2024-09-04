@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://wsrlrp6le8oq"]
 
-[ext_resource type="Script" path="res://enemies.gd" id="1_4tiym"]
+[ext_resource type="Script" path="res://hazmatguy.gd" id="1_boqh4"]
 [ext_resource type="Texture2D" uid="uid://p5lhpmdfwodh" path="res://enemies_sprites/Bot Wheel/damaged.png" id="2_5no8j"]
 [ext_resource type="Shader" path="res://shield_shader.gdshader" id="2_mewsr"]
 [ext_resource type="Texture2D" uid="uid://kpwua50ricyq" path="res://enemies_sprites/Bot Wheel/death.png" id="3_mepaa"]
@@ -9,7 +9,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f2gg1"]
 shader = ExtResource("2_mewsr")
-shader_parameter/line_color = Color(0.35141, 0.0520978, 0.317609, 0.952941)
+shader_parameter/line_color = Color(1, 1, 1, 0.952941)
 shader_parameter/line_thickness = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0kvh"]
@@ -131,7 +131,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 8.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -164,7 +164,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpr5l"]
-radius = 5.0
+radius = 3.0
 height = 26.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5v2vb"]
@@ -173,46 +173,46 @@ height = 34.0
 
 [node name="enemy1" type="CharacterBody2D"]
 position = Vector2(10, -3)
-script = ExtResource("1_4tiym")
+script = ExtResource("1_boqh4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_f2gg1")
-position = Vector2(1.71665, -15.6641)
+position = Vector2(3, -19)
 scale = Vector2(1.60695, 1.5643)
 sprite_frames = SubResource("SpriteFrames_fkunr")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.106159
+frame_progress = 0.742655
 
 [node name="ShapeBox" type="CollisionShape2D" parent="."]
-position = Vector2(1, -11)
+position = Vector2(1, -9)
 shape = SubResource("CapsuleShape2D_xpr5l")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-10, 3)
 
 [node name="HitBox" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(10, -17)
+position = Vector2(11, -16)
 shape = SubResource("CapsuleShape2D_5v2vb")
 
 [node name="Cast_Down_Left" type="RayCast2D" parent="."]
-position = Vector2(-27, 2)
+position = Vector2(-20, 2)
 target_position = Vector2(0, 9)
 collide_with_areas = true
 
 [node name="Cast_Right" type="RayCast2D" parent="."]
-position = Vector2(7, -1)
+position = Vector2(11, -5)
 target_position = Vector2(8, 0)
 collide_with_areas = true
 
 [node name="Cast_Down_Right" type="RayCast2D" parent="."]
-position = Vector2(5, 2)
+position = Vector2(10, 2)
 target_position = Vector2(0, 8)
 collide_with_areas = true
 
 [node name="Cast_Left" type="RayCast2D" parent="."]
-position = Vector2(-3, -3)
+position = Vector2(-8, -5)
 target_position = Vector2(-50, 0)
 collide_with_areas = true
 
